@@ -1,0 +1,306 @@
+enum OrderByArg {
+    ASC
+    DESC
+}
+
+type BatchPayload {
+    count: Int
+}
+
+input AWSDateTimeFilterInput {
+    equals: AWSDateTime
+    gt: AWSDateTime
+    gte: AWSDateTime
+    in: [AWSDateTime!]
+    lt: AWSDateTime
+    lte: AWSDateTime
+    not: AWSDateTimeFilterInput
+    notIn: [AWSDateTime!]
+}
+
+input FloatFilterInput {
+    equals: Float
+    gt: Float
+    gte: Float
+    in: [Float!]
+    lt: Float
+    lte: Float
+    not: FloatFilterInput
+    notIn: [Float!]
+}
+
+input IntFilterInput {
+    equals: Int
+    gt: Int
+    gte: Int
+    in: [Int!]
+    lt: Int
+    lte: Int
+    not: IntFilterInput
+    notIn: [Int!]
+}
+
+input AWSJSONFilterInput {
+    contains: String
+    endsWith: String
+    equals: AWSJSON
+    in: [AWSJSON!]
+    not: AWSJSONFilterInput
+    notIn: [AWSJSON!]
+    startsWith: String
+}
+
+input AWSEmailFilterInput {
+    contains: String
+    endsWith: String
+    equals: AWSEmail
+    in: [AWSEmail!]
+    not: AWSEmailFilterInput
+    notIn: [AWSEmail!]
+    startsWith: String
+}
+
+input AWSURLFilterInput {
+    contains: String
+    endsWith: String
+    equals: AWSURL
+    in: [AWSURL!]
+    not: AWSURLFilterInput
+    notIn: [AWSURL!]
+    startsWith: String
+}
+
+input StringFilterInput {
+    contains: String
+    endsWith: String
+    equals: String
+    in: [String!]
+    not: StringFilterInput
+    notIn: [String!]
+    startsWith: String
+}
+
+input BooleanFilterInput {
+    equals: Boolean
+    not: BooleanFilterInput
+}
+
+type people {
+    id: Int!
+    name: String
+    country: String
+}
+
+type person_emails {
+    id: Int!
+    person_id: Int!
+    value: String
+}
+
+input peopleCreateInput {
+    name: String
+    country: String
+}
+
+input peopleUpdateInput {
+    name: String
+    country: String
+}
+
+input peopleFilterRelationsInput {
+    every: peopleWhereFilterInput
+    none: peopleWhereFilterInput
+    some: peopleWhereFilterInput
+}
+
+input peopleWhereFilterInput {
+    OR: [peopleWhereFilterInput]
+    NOT: [peopleWhereFilterInput]
+    AND: [peopleWhereFilterInput]
+    id: IntFilterInput
+    name: StringFilterInput
+    country: StringFilterInput
+}
+
+input peopleWhereUniqueInput {
+    id: Int
+}
+
+input peopleOrderByInput {
+    id: OrderByArg
+    name: OrderByArg
+    country: OrderByArg
+}
+
+input peopleUpdateUniqueInput {
+    data: peopleUpdateInput!
+    where: peopleWhereUniqueInput!
+}
+
+input peopleUpdateManyInput {
+    data: peopleUpdateInput!
+    where: peopleWhereFilterInput!
+}
+
+input peopleUpsertInput {
+    create: peopleCreateInput!
+    update: peopleUpdateInput!
+}
+
+input peopleUpsertUniqueInput {
+    where: peopleWhereUniqueInput!
+    create: peopleCreateInput!
+    update: peopleUpdateInput!
+}
+
+input peopleDeleteUniqueInput {
+    where: peopleWhereUniqueInput!
+}
+
+input peopleDeleteManyInput {
+    where: peopleWhereFilterInput!
+}
+
+input peopleConnectOrCreateInput {
+    where: peopleWhereUniqueInput!
+    create: peopleCreateInput!
+}
+
+input person_emailsCreateInput {
+    person_id: Int!
+    value: String
+}
+
+input person_emailsUpdateInput {
+    person_id: Int
+    value: String
+}
+
+input person_emailsFilterRelationsInput {
+    every: person_emailsWhereFilterInput
+    none: person_emailsWhereFilterInput
+    some: person_emailsWhereFilterInput
+}
+
+input person_emailsWhereFilterInput {
+    OR: [person_emailsWhereFilterInput]
+    NOT: [person_emailsWhereFilterInput]
+    AND: [person_emailsWhereFilterInput]
+    id: IntFilterInput
+    person_id: IntFilterInput
+    value: StringFilterInput
+}
+
+input person_emailsWhereUniqueInput {
+    id: Int
+}
+
+input person_emailsOrderByInput {
+    id: OrderByArg
+    person_id: OrderByArg
+    value: OrderByArg
+}
+
+input person_emailsUpdateUniqueInput {
+    data: person_emailsUpdateInput!
+    where: person_emailsWhereUniqueInput!
+}
+
+input person_emailsUpdateManyInput {
+    data: person_emailsUpdateInput!
+    where: person_emailsWhereFilterInput!
+}
+
+input person_emailsUpsertInput {
+    create: person_emailsCreateInput!
+    update: person_emailsUpdateInput!
+}
+
+input person_emailsUpsertUniqueInput {
+    where: person_emailsWhereUniqueInput!
+    create: person_emailsCreateInput!
+    update: person_emailsUpdateInput!
+}
+
+input person_emailsDeleteUniqueInput {
+    where: person_emailsWhereUniqueInput!
+}
+
+input person_emailsDeleteManyInput {
+    where: person_emailsWhereFilterInput!
+}
+
+input person_emailsConnectOrCreateInput {
+    where: person_emailsWhereUniqueInput!
+    create: person_emailsCreateInput!
+}
+
+type Mutation {
+    createpeople(data: peopleCreateInput!): people
+    updatepeople(
+        data: peopleUpdateInput!
+        where: peopleWhereUniqueInput!
+    ): people
+    upsertpeople(
+        data: peopleUpdateInput!
+        where: peopleWhereUniqueInput!
+    ): people
+    deletepeople(where: peopleWhereUniqueInput!): people
+    deleteManypeople(
+        where: peopleWhereFilterInput!
+    ): BatchPayload
+
+    createperson_emails(
+        data: person_emailsCreateInput!
+    ): person_emails
+    updateperson_emails(
+        data: person_emailsUpdateInput!
+        where: person_emailsWhereUniqueInput!
+    ): person_emails
+    upsertperson_emails(
+        data: person_emailsUpdateInput!
+        where: person_emailsWhereUniqueInput!
+    ): person_emails
+    deleteperson_emails(
+        where: person_emailsWhereUniqueInput!
+    ): person_emails
+    deleteManyperson_emails(
+        where: person_emailsWhereFilterInput!
+    ): BatchPayload
+}
+
+type Query {
+    getpeople(where: peopleWhereUniqueInput!): people
+    listpeople(
+        where: peopleWhereFilterInput
+        orderBy: peopleOrderByInput
+        skip: Int
+        take: Int
+    ): [people]
+
+    getperson_emails(
+        where: person_emailsWhereUniqueInput!
+    ): person_emails
+    listperson_emails(
+        where: person_emailsWhereFilterInput
+        orderBy: person_emailsOrderByInput
+        skip: Int
+        take: Int
+    ): [person_emails]
+}
+
+type Subscription {
+    onCreatedpeople(id: Int): people
+        @aws_subscribe(mutations: ["createpeople"])
+    onUpdatedpeople(id: Int): people
+        @aws_subscribe(mutations: ["updatepeople"])
+    onDeletedpeople(id: Int): people
+        @aws_subscribe(mutations: ["deletepeople"])
+
+    onCreatedperson_emails(id: Int): person_emails
+        @aws_subscribe(mutations: ["createperson_emails"])
+    onUpdatedperson_emails(id: Int): person_emails
+        @aws_subscribe(mutations: ["updateperson_emails"])
+    onDeletedperson_emails(id: Int): person_emails
+        @aws_subscribe(mutations: ["deleteperson_emails"])
+}
